@@ -46,7 +46,7 @@ public class TabsController implements Initializable {
         choices = new String[]{"One", "Two", "Three"};
         choiceBox.getItems().addAll(choices);
 
-        VBox tab1vBox = new VBox(50.0, btn1, btn2, btn3, checkBox,choiceBox);
+        VBox tab1vBox = new VBox(50.0, btn1, btn2, btn3, checkBox, choiceBox);
 
         tab1.setContent(tab1vBox);
 
@@ -56,7 +56,7 @@ public class TabsController implements Initializable {
 
         rootPane.getChildren().add(borderPane);
 
-
+        choiceBox.setOnAction(actionEvent -> setNewText());
 
 
     }
@@ -75,4 +75,14 @@ public class TabsController implements Initializable {
     public void settingText() {
         txt1.setText("Button 1 pressed");
     }
+
+    public void setNewText() {
+
+        if (choiceBox.getValue() == "Two") {
+            txt1.setText("Its number 2");
+        } else {
+            txt1.setText(choiceBox.getValue());
+        }
+    }
+
 }
