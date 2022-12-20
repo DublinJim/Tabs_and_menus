@@ -1,10 +1,7 @@
 package com.example.tabs_and_menus;
 
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -15,10 +12,11 @@ import java.util.ResourceBundle;
 
 public class TabsController implements Initializable {
 
-
+    public String[] choices;
     public AnchorPane rootPane;
     public Text txt1;
     public CheckBox checkBox;
+    public ChoiceBox<String> choiceBox = new ChoiceBox<>();
 
     public Boolean isOn;
 
@@ -45,18 +43,20 @@ public class TabsController implements Initializable {
         btn1.setOnAction(e -> settingText());
         tab1.setContent(btn1);
 
-        VBox vBox = new VBox(50.0, btn1, checkBox);
+        choices = new String[]{"One", "Two", "Three"};
+        choiceBox.getItems().addAll(choices);
 
-        tab1.setContent(vBox);
+        VBox tab1vBox = new VBox(50.0, btn1, btn2, btn3, checkBox,choiceBox);
 
-        tab2.setContent(btn2);
-        tab3.setContent(btn3);
+        tab1.setContent(tab1vBox);
 
 
         tabPane.getTabs().addAll(tab1, tab2, tab3);
         borderPane.setCenter(tabPane);
 
         rootPane.getChildren().add(borderPane);
+
+
 
 
     }
